@@ -1,1 +1,36 @@
+cron setup for correcting time
+
+===== Static ip setup
+
+@/etc/dhcpcd.conf
+  interface wlan0
+  static routers=<routerip>
+  static domain_name_servers=<router or dhcp provider/s>
+  static ip_address=<yourstaticip>/24
+
+
+===== Sync time on reboot
+  replace this line in /etc/systemd/timesyncd.conf
+
+    FallbackNTP=xxxxxxx
+
+    -to- 
+
+    FallbackNTP=time.nist.gov
+
+  open crontab
+    crontab -e
+
+  add this line
+    @reboot systemctl restart systemd-timesyncd
+
+  optional>> reboot system.
+
+
+===== pihole setup 20250802
+
+
+
+  add this line
+
 
